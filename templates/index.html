@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block head %}
     <title>Task Manager</title>
+    <link rel="stylesheet" href="static\index.css">
 {% endblock %}
 
 {% block body %}
@@ -26,7 +27,7 @@
         </table>
     </div>
 
-    <form action="/" method="POST">
+    <form action="/index" method="POST">
         <input type="text" name="content" id="content">
         <input type="submit" value="Add Task">
 

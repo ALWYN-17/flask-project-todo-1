@@ -1,9 +1,4 @@
-{% extends 'base.html' %}
-{% block head %}
-    <title>Task Manager</title>
-    <link rel="stylesheet" href="static\update.css">
-    <style>
-        .main{
+.main{
             border: 5px rgb(12, 6, 6) solid;
             border-radius: 50px;
             box-shadow: 15px 10px black;
@@ -59,15 +54,3 @@
             background-position: center;
             background-size: cover;
         }  
-    </style>
-{% endblock %}
-
-{% block body %}
-    <div class="main"> 
-
-    <form action="/update/{{task.id}}" method="POST">
-        <input type="text" name="content" id="content">
-        <input type="submit" value="Add Task">
-
-    </form>
-{% endblock %}

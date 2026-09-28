@@ -1,9 +1,4 @@
-{% extends 'base.html' %}
-{% block head %}
-    <title>Task Manager</title>
-    <link rel="stylesheet" href="static\update.css">
-    <style>
-        .main{
+.main{
             border: 5px rgb(12, 6, 6) solid;
             border-radius: 50px;
             box-shadow: 15px 10px black;
@@ -19,9 +14,9 @@
             transition: all 0.5s ease-in-out;
         }
 .main:hover{
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
-        input{
+input{
             width: 300px;
             height: 40px;
             border: 3px rgb(211, 206, 206) solid;
@@ -31,8 +26,14 @@
             margin-left: 25%;
             margin-bottom: 1%;
         }
-        
-        
+        button{
+            width: 150px;
+            height: 40px;
+            background-color: rgb(245, 242, 245);
+            color: #000;
+            border: 3px rgb(33, 30, 30) solid;
+            border-radius: 20px;
+        }
         td{
             padding-bottom: 20px;
             padding-left: 20px;
@@ -59,15 +60,3 @@
             background-position: center;
             background-size: cover;
         }  
-    </style>
-{% endblock %}
-
-{% block body %}
-    <div class="main"> 
-
-    <form action="/update/{{task.id}}" method="POST">
-        <input type="text" name="content" id="content">
-        <input type="submit" value="Add Task">
-
-    </form>
-{% endblock %}
