@@ -15,7 +15,7 @@ def __repr__(self):
     return "Task %r>" %self.id
 
 
-
+#insert
 @app.route("/",methods=["POST","GET"])
 def index():
     if request.method=="POST":
@@ -29,8 +29,18 @@ def index():
             return f"unable to add task {e}"
     else:
         tasks=Todo.query.order_by(Todo.date_created).all()
-        return render_template("index.html")
+        return render_template("index.html",tasks=tasks)
 
+#delete
+@app.route("/delete/<int:id>")
+def delete(id):
+    delete_task=Todo.query.get_or_404(id)
+    try:
+        db.session.delete(delete_task)
+        db.session.commit()
+        return redirect("/")
+    except Exception as e:
+        return f"could not delete task {e}"
 
 if __name__=="__main__":
     with app.app_context():
