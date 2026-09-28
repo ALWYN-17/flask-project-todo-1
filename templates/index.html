@@ -1,8 +1,26 @@
 {% extends 'base.html' %}
 {% block head %}
-    <title>welcome to home page</title>
+    <title>Task Manager</title>
 {% endblock %}
 
 {% block body %}
-    <h1>welcome to todo app</h1>
+    <div class="main"> 
+        <h1>Task manager</h1>
+        <table>
+            <tr>
+                <th>Task</th>
+                <th>Added</th>
+                <th>Action</th>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <a href="">Delete</a><br>
+                    <a href="">Update</a>
+                </td>
+            </tr>
+        </table>
+    </div>
 {% endblock %}
