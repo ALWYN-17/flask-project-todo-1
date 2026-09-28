@@ -58,10 +58,21 @@ def delete(id):
 def update(id):
     task=Todo.query.get_or_404(id)
     if request.method=="POST":
-        task.content=request.form["content"]
+        task_content=request.form["content"]
+        #prevent empty updated task
+        if task_content == "":
+            return "Task cannot be empty"
+        
+        #check if another task already has the same content
+        duplicate_task = Todo.query.filter(Todo.content == task_content,Todo.id != id).first()
+
+        if duplicate_task:
+            return "Duplicate task already exists"
+
+        task.content = task_content
         try:
             db.session.commit()
-            return redirect("/")
+            return redirect("/index")
         except Exception as e:
             return f"could not update the task {e}"
     else:
