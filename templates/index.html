@@ -13,14 +13,16 @@
                 <th>Action</th>
             </tr>
 
+            {% for t in tasks %}
             <tr>
-                <td></td>
-                <td></td>
+                <td>{{t.content}}</td>
+                <td>{{t.date_created.date()}}</td>
                 <td>
                     <a href="">Delete</a><br>
                     <a href="">Update</a>
                 </td>
             </tr>
+            {% endfor %}
         </table>
     </div>
 

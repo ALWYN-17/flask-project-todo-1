@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,redirect,request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -14,9 +14,22 @@ class Todo(db.Model):
 def __repr__(self):
     return "Task %r>" %self.id
 
+
+
 @app.route("/",methods=["POST","GET"])
 def index():
-    return render_template("index.html")
+    if request.method=="POST":
+        task_content=request.form["content"]
+        new_task=Todo(content=task_content)
+        try:
+            db.session.add(new_task)
+            db.session.commit()
+            return redirect("/")
+        except Exception as e:
+            return f"unable to add task {e}"
+    else:
+        tasks=Todo.query.order_by(Todo.date_created).all()
+        return render_template("index.html")
 
 
 if __name__=="__main__":
