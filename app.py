@@ -23,6 +23,14 @@ def welcome():
 def index():
     if request.method=="POST":
         task_content=request.form["content"]
+         #1 prevent empty task
+        if task_content=="":
+            return "Task is empty"
+        #2  check for duplicate
+        duplicate_task=TODO.query.filter_by(content=task_content).first()
+        if duplicate_task:
+            return "Duplicate task already exist"
+        #add new task
         new_task=Todo(content=task_content)
         try:
             db.session.add(new_task)
